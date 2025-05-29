@@ -7,18 +7,27 @@ public class DTODenuncia {
     @JsonIgnore
     private Integer id;
 
-    @JsonIgnore
-    private DTOUsuario usuario;
+    private String relato;
+
+    private Integer usuarioId;
 
     public DTODenuncia() {
     }
 
-    public DTOUsuario getUsuario() {
-        return usuario;
+    public String getRelato() {
+        return relato;
     }
 
-    public void setUsuario(DTOUsuario usuario) {
-        this.usuario = usuario;
+    public void setRelato(String relato) {
+        this.relato = relato;
+    }
+
+    public Integer getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Integer usuarioId) {
+        this.usuarioId = usuarioId;
     }
 
     public Integer getId() {

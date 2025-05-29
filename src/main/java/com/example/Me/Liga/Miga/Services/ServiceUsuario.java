@@ -22,7 +22,7 @@ public class ServiceUsuario {
     }
 
     // Cadastrar Usuario
-    public void CadastrarUsuario (Usuario usuario) {
+    public void cadastrarUsuario (Usuario usuario) {
         repositoryUsuario.save(usuario);
     }
 

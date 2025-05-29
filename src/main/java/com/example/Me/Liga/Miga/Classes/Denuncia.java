@@ -6,18 +6,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-public class Denuncia extends Pessoa {
+public class Denuncia {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Integer id;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private Status status;
 
     @NotBlank(message = "O Relato não pode estar em Branco")
@@ -34,38 +33,27 @@ public class Denuncia extends Pessoa {
     public Denuncia() {
     }
 
-    public Denuncia(String nome, LocalDate dataNascimento, String endereco, String telefone, String cpf, Status status, String relato, LocalDateTime dataHora, Usuario usuario) {
-        super(nome, dataNascimento, endereco, telefone, cpf);
+    public Denuncia(Status status, String relato, LocalDateTime dataHora) {
         this.status = status;
         this.relato = relato;
         this.dataHora = dataHora;
-        this.usuario = usuario;
+
     }
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public void setId(Integer id) {
         this.id = id;
     }
 
-    public Status getStatus() {
-        return status;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getRelato() {
-        return relato;
-    }
-
-    public void setRelato(String relato) {
-        this.relato = relato;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public LocalDateTime getDataHora() {
@@ -76,11 +64,19 @@ public class Denuncia extends Pessoa {
         this.dataHora = dataHora;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getRelato() {
+        return relato;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setRelato(String relato) {
+        this.relato = relato;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

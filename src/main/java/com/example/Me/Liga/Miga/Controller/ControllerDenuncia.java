@@ -1,8 +1,8 @@
 package com.example.Me.Liga.Miga.Controller;
 
 import com.example.Me.Liga.Miga.Classes.Denuncia;
+import com.example.Me.Liga.Miga.DTO.DTODenuncia;
 import com.example.Me.Liga.Miga.Services.ServiceDenuncia;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,29 +18,25 @@ public class ControllerDenuncia {
 
     // Criar uma nova denúncia
     @PostMapping("/fazerDenuncia")
-    public ResponseEntity<Denuncia> fazerDenuncia(@RequestBody Denuncia denuncia) {
-        Denuncia salva = serviceDenuncia.salvarDenuncia(denuncia);
-        return ResponseEntity.ok(salva);
+    public Denuncia criarDenuncia(@RequestBody DTODenuncia dtoDenuncia) {
+        return serviceDenuncia.salvarDenuncia(dtoDenuncia);
     }
 
     // Buscar denúncia por ID
     @GetMapping("/buscarDenuncia/{id}")
-    public ResponseEntity<Denuncia> buscarPorId(@PathVariable Integer id) {
-        return serviceDenuncia.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public Denuncia buscarPorId(@PathVariable Integer id) {
+        return serviceDenuncia.procurarDenunciaPorId(id);
     }
 
     // Listar todas as denúncias
     @GetMapping("/listarDenuncias")
-    public ResponseEntity<List<Denuncia>> listarTodas() {
-        List<Denuncia> denuncias = serviceDenuncia.listarTodas();
-        return ResponseEntity.ok(denuncias);
+    public List<Denuncia> listarTodas() {
+        return serviceDenuncia.listarTodas();
     }
 
-    // Deletar Cliente ou Excluir Conta
+    // Deletar denúncia por ID
     @DeleteMapping("/deletarDenuncia/{id}")
-    public void deletarCliente(@PathVariable Integer id) {
+    public void deletarDenuncia(@PathVariable Integer id) {
         serviceDenuncia.deletarDenuncia(id);
     }
 }

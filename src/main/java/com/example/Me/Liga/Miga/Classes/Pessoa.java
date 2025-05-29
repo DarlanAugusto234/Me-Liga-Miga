@@ -6,7 +6,6 @@ import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @MappedSuperclass
 public abstract class Pessoa {
 
